@@ -6,33 +6,23 @@ const router = express.Router();
 // Apply for Job
 router.post("/", async (req, res) => {
   try {
-    const application = await Application.create(
-      req.body
-    );
-
-    // Send Confirmation Email
-    await sendEmail(
-      application.email,
-      "Application Submitted Successfully",
-      `Hello ${application.name},
-
-Your application has been submitted successfully.
-
-Thank you for applying through JobBoard.
-
-We wish you the best of luck for your application.
-
-Regards,
-JobBoard Team`
-    );
+    const application = await Application.create({
+      name: req.body.name,
+      email: req.body.email,
+      resume: req.body.resume,
+      jobId: req.body.jobId,
+    });
 
     res.status(201).json({
-      message:
-        "Application Submitted Successfully",
+      success: true,
+      message: "Application Submitted Successfully",
       application,
     });
   } catch (error) {
+    console.error(error);
+
     res.status(500).json({
+      success: false,
       message: error.message,
     });
   }
@@ -41,12 +31,17 @@ JobBoard Team`
 // Get All Applications
 router.get("/", async (req, res) => {
   try {
-    const applications =
-      await Application.find();
+    const applications = await Application.find();
 
-    res.json(applications);
+    res.status(200).json({
+      success: true,
+      applications,
+    });
   } catch (error) {
+    console.error(error);
+
     res.status(500).json({
+      success: false,
       message: error.message,
     });
   }

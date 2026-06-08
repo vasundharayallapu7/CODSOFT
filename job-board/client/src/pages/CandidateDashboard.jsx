@@ -21,9 +21,16 @@ function CandidateDashboard() {
         "http://localhost:5000/api/applications"
       );
 
-      setApplications(res.data);
+      // Supports both formats:
+      // [] OR { success:true, applications:[...] }
+      const data = Array.isArray(res.data)
+        ? res.data
+        : res.data.applications || [];
+
+      setApplications(data);
     } catch (error) {
       console.log(error);
+      setApplications([]);
     }
   };
 
@@ -38,9 +45,7 @@ function CandidateDashboard() {
 
   return (
     <div className="dashboard-page">
-
       <div className="dashboard-header">
-
         <button
           className="logout-btn"
           onClick={handleLogout}
@@ -50,21 +55,16 @@ function CandidateDashboard() {
 
         <h1>👨‍💼 Candidate Dashboard</h1>
 
-        <p>
-          Track all your job applications
-        </p>
+        <p>Track all your job applications</p>
 
         <div className="stats-card">
           <h2>{applications.length}</h2>
           <p>Total Applications</p>
         </div>
-
       </div>
 
       {/* Profile Section */}
-
       <div className="dashboard-card">
-
         <h2>👤 My Profile</h2>
 
         <input
@@ -103,12 +103,9 @@ function CandidateDashboard() {
           }
         />
 
-        <button
-          onClick={handleProfileUpdate}
-        >
+        <button onClick={handleProfileUpdate}>
           Update Profile
         </button>
-
       </div>
 
       <h2 className="section-title">
@@ -116,7 +113,6 @@ function CandidateDashboard() {
       </h2>
 
       <div className="application-container">
-
         {applications.length === 0 ? (
           <p>No Applications Found</p>
         ) : (
@@ -153,13 +149,10 @@ function CandidateDashboard() {
               <p className="status">
                 ✅ Applied
               </p>
-
             </div>
           ))
         )}
-
       </div>
-
     </div>
   );
 }
