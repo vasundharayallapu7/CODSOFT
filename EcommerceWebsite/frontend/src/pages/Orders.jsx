@@ -24,17 +24,19 @@ function Orders() {
 
       <div className="container mt-4">
 
-        <h2 className="mb-4">
+        <h2 className="text-center mb-4">
           My Orders
         </h2>
 
         {orders.length === 0 ? (
-          <h4>No Orders Found</h4>
+          <h4 className="text-center">
+            No Orders Found
+          </h4>
         ) : (
           orders.map((order) => (
             <div
               key={order._id}
-              className="card p-3 mb-3 shadow"
+              className="card p-4 shadow mb-4"
             >
               <h5>
                 Customer: {order.name}
@@ -52,17 +54,42 @@ function Orders() {
                 Address: {order.address}
               </p>
 
-              <h6>
-                Total Amount: ₹
-                {order.totalAmount}
-              </h6>
+              <p>
+                Payment: {order.paymentMethod}
+              </p>
 
-              <small>
-                Ordered On:{" "}
-                {new Date(
-                  order.createdAt
-                ).toLocaleString()}
-              </small>
+              <p>
+                Status:
+                <span className="badge bg-success ms-2">
+                  {order.paymentStatus}
+                </span>
+              </p>
+
+              <h5 className="mt-3">
+                Products
+              </h5>
+
+              {order.items?.map(
+                (item, index) => (
+                  <div
+                    key={index}
+                    className="d-flex justify-content-between border-bottom py-2"
+                  >
+                    <span>
+                      {item.name}
+                    </span>
+
+                    <span>
+                      ₹{item.price}
+                    </span>
+                  </div>
+                )
+              )}
+
+              <h4 className="text-end mt-3">
+                Total: ₹{order.totalAmount}
+              </h4>
+
             </div>
           ))
         )}

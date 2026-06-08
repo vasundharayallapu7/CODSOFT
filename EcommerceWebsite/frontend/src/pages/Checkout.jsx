@@ -10,6 +10,7 @@ function Checkout() {
     email: "",
     phone: "",
     address: "",
+    paymentMethod: "",
   });
 
   useEffect(() => {
@@ -31,22 +32,28 @@ function Checkout() {
     });
   };
 
-  const handleOrder = async () => {
+  const handlePayment = async () => {
     if (
       !formData.name ||
       !formData.email ||
       !formData.phone ||
-      !formData.address
+      !formData.address ||
+      !formData.paymentMethod
     ) {
       alert("Please fill all fields");
       return;
     }
 
     try {
+      alert(
+        `Payment Successful via ${formData.paymentMethod}`
+      );
+
       const orderData = {
         ...formData,
         items: cart,
         totalAmount,
+        paymentStatus: "Paid",
       };
 
       await API.post(
@@ -54,15 +61,15 @@ function Checkout() {
         orderData
       );
 
-      alert("Order Placed Successfully!");
-
       localStorage.removeItem("cart");
+
+      alert("Order Placed Successfully!");
 
       window.location.href = "/orders";
 
     } catch (error) {
       console.log(error);
-      alert("Failed to place order");
+      alert("Failed To Place Order");
     }
   };
 
@@ -122,6 +129,33 @@ function Checkout() {
                 onChange={handleChange}
               />
 
+              <select
+                className="form-control mb-3"
+                name="paymentMethod"
+                value={formData.paymentMethod}
+                onChange={handleChange}
+              >
+                <option value="">
+                  Select Payment Method
+                </option>
+
+                <option value="UPI">
+                  UPI
+                </option>
+
+                <option value="Credit Card">
+                  Credit Card
+                </option>
+
+                <option value="Debit Card">
+                  Debit Card
+                </option>
+
+                <option value="Cash On Delivery">
+                  Cash On Delivery
+                </option>
+              </select>
+
             </div>
 
           </div>
@@ -143,7 +177,9 @@ function Checkout() {
                       key={index}
                       className="d-flex justify-content-between border-bottom pb-2 mb-2"
                     >
-                      <span>{item.name}</span>
+                      <span>
+                        {item.name}
+                      </span>
 
                       <span>
                         ₹{item.price}
@@ -157,9 +193,9 @@ function Checkout() {
 
                   <button
                     className="btn btn-success w-100 mt-3"
-                    onClick={handleOrder}
+                    onClick={handlePayment}
                   >
-                    Place Order
+                    Pay Now
                   </button>
                 </>
               )}
