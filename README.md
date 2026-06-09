@@ -135,7 +135,7 @@ A full-stack project management application that allows users to:
 
 🔗 GitHub: https://github.com/vasundharayallapu7
 
-🔗 LinkedIn: https://www.linkedin.com/in/yallapu-vasundhara/
+🔗 LinkedIn: https://www.linkedin.com/in/yallapu-vasundhara-0216212bb
 
 🔗 Portfolio: https://vasundharayallapu-portfolio.netlify.app
 
