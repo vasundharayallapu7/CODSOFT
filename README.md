@@ -36,6 +36,9 @@ A simple calculator application capable of performing basic arithmetic operation
 
 ## 💼 Job Board
 
+🎥 Demo Video:
+https://drive.google.com/file/d/1PCVSFVgdRzXEHIPYslz5VAiY9VLMiOKu/view?usp=sharing
+
 A web application that allows employers to post jobs and candidates to browse and apply for opportunities.
 
 ### Features
