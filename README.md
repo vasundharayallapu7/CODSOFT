@@ -53,7 +53,7 @@ A web application that allows employers to post jobs and candidates to browse an
 ## 📝 Online Quiz Maker
 
 🎥 Demo Video:
-https://drive.google.com/file/d/1PCVSFVgdRzXEHIPYslz5VAiY9VLMiOKu/view?usp=sharing
+https://drive.google.com/file/d/15-_aNxF7dBr5zJyAga6gfYb78Wl99Wzj/view?usp=sharing
 
 An interactive quiz application that enables users to create, manage, and attempt quizzes with instant score calculation.
 
@@ -94,7 +94,7 @@ A full-stack MERN E-Commerce application featuring:
 ## 📊 Project Management Tool
 
 🎥 Demo Video:
-https://drive.google.com/file/d/15-_aNxF7dBr5zJyAga6gfYb78Wl99Wzj/view?usp=sharing
+https://drive.google.com/file/d/1afqdb7RoGSfKBCxgISXCPly4Kn689ap4/view?usp=sharing
 
 A full-stack project management application that allows users to:
 
